@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Day 11 Rahul muzammil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            cursor: pointer;
+        }
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        #overlay img {
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tugas Day 11 Rahul Muzammil</h1>
+    <div class="gallery">
+        <img src="foto1.jpeg" alt="Foto 1" data-audio="audio1.mp3">
+        <img src="foto2.jpeg" alt="Foto 2" data-audio="audio2.mp3">
+        <img src="foto3.jpeg" alt="Foto 3" data-audio="audio3.mp3">
+        <img src="foto4.jpeg" alt="Foto 4" data-audio="audio4.mp3">
+        <img src="foto5.jpeg" alt="Foto 5" data-audio="audio5.mp3">
+        <img src="foto6.jpeg" alt="Foto 6" data-audio="audio6.mp3">
+        <img src="foto7.jpeg" alt="Foto 7" data-audio="audio7.mp3">
+        <img src="foto8.jpeg" alt="Foto 8" data-audio="audio8.mp3">
+        <img src="foto9.jpeg" alt="Foto 9" data-audio="audio9.mp3">
+        <img src="foto10.jpeg" alt="Foto 10" data-audio="audio10.mp3">
+    </div>
+
+    <div id="overlay">
+        <img id="overlay-img" style="margin-right: 5vw;" src="" alt="">
+        <audio id="audio-player" controls style="display: none;"></audio>
+    </div>
+
+    <script>
+        const images = document.querySelectorAll('.gallery img');
+        const overlay = document.getElementById('overlay');
+        const overlayImg = document.getElementById('overlay-img');
+        const audioPlayer = document.getElementById('audio-player');
+
+        images.forEach((img) => {
+            img.addEventListener('click', () => {
+                overlayImg.src = img.src;
+                overlay.style.display = 'flex';
+                
+                audioPlayer.src = img.getAttribute('data-audio');
+                audioPlayer.style.display = 'block';
+                audioPlayer.play();
+            });
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.style.display = 'none';
+                audioPlayer.pause();
+            }
+        });
+    </script>
+
+</body>
+</html>
